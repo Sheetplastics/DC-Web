@@ -1,0 +1,316 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Syne:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.tab-bar{display:flex;gap:2px;margin-bottom:12px}
+.tb{padding:8px 18px;font-size:12px;font-weight:500;border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;color:var(--color-text-secondary);border-radius:6px;transition:all .15s}
+.tb.active{background:#111;color:#fff;border-color:#111}
+.page{display:none;background:#fff;border:1px solid #ddd;border-radius:8px;overflow:hidden}
+.page.show{display:block}
+
+/* NAV */
+.tn{background:#111;padding:9px 18px;display:flex;align-items:center;gap:10px}
+.hex{width:20px;height:20px;background:#7c3aed;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);flex-shrink:0}
+.sbar{flex:1;max-width:220px;background:#2a2a2a;border:none;border-radius:3px;padding:5px 9px;color:#888;font-size:10px}
+.nic{margin-left:auto;display:flex;gap:10px}
+.ni{width:14px;height:14px;background:#777;border-radius:50%}
+.ni2{width:14px;height:14px;background:#777;border-radius:2px}
+.sn{background:#1c1c1c;display:flex;border-bottom:1px solid #2a2a2a}
+.snl{color:#bbb;font-size:9px;padding:8px 11px;letter-spacing:.05em;text-transform:uppercase;cursor:default}
+.bc{padding:5px 18px;font-size:9px;color:#999;background:#f8f8f8;border-bottom:1px solid #eee}
+
+/* PRODUCT */
+.prod{display:grid;grid-template-columns:190px 1fr;gap:20px;padding:20px 18px;background:#fff;border-bottom:1px solid #eee}
+.pimg{background:#f4f4f4;border:1px solid #e5e5e5;border-radius:4px;height:160px;display:flex;align-items:center;justify-content:center}
+.pimgi{background:#e0e0e0;width:70%;height:75%;border-radius:3px}
+.pthumbs{display:flex;gap:5px;margin-top:6px}
+.pth{width:40px;height:30px;background:#f0f0f0;border:1px solid #ddd;border-radius:2px}
+.ptitle{color:#111;line-height:1.25;margin-bottom:7px}
+.pdesc{color:#666;font-size:10.5px;line-height:1.65;margin-bottom:11px}
+.psku{font-size:9.5px;color:#aaa;margin-bottom:9px}
+.plabel{font-size:9.5px;color:#555;margin-bottom:3px}
+.psel{border:1px solid #ddd;border-radius:3px;padding:5px 9px;font-size:9.5px;color:#aaa;width:170px;display:flex;justify-content:space-between;margin-bottom:7px}
+.psel::after{content:"▾";color:#bbb}
+.pprice{font-size:24px;font-weight:700;color:#111;margin:11px 0 9px}
+.pcta{background:#00c8a0;color:#fff;border:none;border-radius:4px;padding:9px 18px;font-size:10px;font-weight:700;letter-spacing:.04em;display:inline-flex;align-items:center;gap:5px}
+.cico{width:11px;height:11px;border:1.5px solid rgba(255,255,255,.7);border-radius:1px}
+
+/* SPECS TAB */
+.specs{background:#1a1a1a;margin:0;padding:14px 18px}
+.stabs{display:flex;gap:0;margin-bottom:12px}
+.stab{color:#aaa;font-size:9px;padding:5px 12px;border:1px solid #333;cursor:default}
+.stab.a{background:#333;color:#fff}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.sgi{background:#222;border-radius:3px;padding:8px;text-align:center}
+.sgiv{font-size:11px;font-weight:700;color:#fff;margin-bottom:2px}
+.sgil{font-size:8px;color:#888}
+
+/* CONTENT */
+.cont{padding:22px 18px;background:#fff;border-bottom:1px solid #f0f0f0}
+.ch1{color:#111;font-size:17px;line-height:1.3;margin-bottom:14px}
+.ch2{color:#111;font-size:13px;margin-bottom:5px}
+.cbody{color:#555;font-size:10.5px;line-height:1.7;margin-bottom:14px}
+
+/* EXCELLENCE */
+.exc{background:#111;padding:22px 18px;text-align:center}
+.exct{font-size:16px;color:#fff;margin-bottom:4px}
+.excs{font-size:10px;color:#888;margin-bottom:14px}
+.excg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.exci{border-radius:4px;overflow:hidden}
+.excip{height:90px;display:flex;align-items:flex-end;padding:8px}
+.excip1{background:#2a2a2a}
+.excip2{background:#3a3020}
+.excip3{background:#1a2a2a}
+.excil{font-size:9px;font-weight:700;color:#fff}
+.excis{font-size:8px;color:#aaa;margin-top:2px}
+
+/* CRAFTSMAN */
+.craft{background:#2a1a2a;padding:22px 18px;text-align:center}
+.craftt{font-size:15px;color:#fff;margin-bottom:4px}
+.crafts{font-size:10px;color:#aaa;margin-bottom:14px}
+.craftg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.craftgi{text-align:center}
+.crafticon{width:32px;height:32px;background:#3a2a3a;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center}
+.craftil{font-size:9px;color:#ccc}
+
+/* YAML */
+.yaml{padding:20px 18px;background:#fff}
+.yamlt{font-size:13px;color:#111;margin-bottom:12px;font-weight:600}
+.yamlg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.yamli{border:1px solid #eee;border-radius:4px;overflow:hidden}
+.yamliph{background:#f5f5f5;height:100px;display:flex;align-items:center;justify-content:center}
+.yamlipi{background:#e0e0e0;width:60%;height:70%;border-radius:2px}
+.yamlib{padding:9px}
+.yamlitl{font-size:9.5px;font-weight:700;color:#111;margin-bottom:3px;line-height:1.3}
+.yamlipx{font-size:11px;font-weight:700;color:#111;margin-bottom:5px}
+.stars{color:#f59e0b;font-size:8px;margin-bottom:5px}
+.yamlibt{background:#00c8a0;color:#fff;border:none;border-radius:3px;padding:5px 10px;font-size:8.5px;font-weight:700;width:100%}
+
+/* CUSTOM */
+.custom{background:#111;padding:28px 18px;text-align:center}
+.customt{font-size:16px;color:#fff;margin-bottom:5px}
+.customs{font-size:10px;color:#888;margin-bottom:14px}
+.custombtn{background:transparent;border:1px solid #00c8a0;color:#00c8a0;border-radius:4px;padding:8px 20px;font-size:10px;font-weight:600;cursor:default}
+
+/* SOCIAL */
+.social{padding:22px 18px;background:#fff}
+.socialt{font-size:16px;color:#111;text-align:center;margin-bottom:3px}
+.socials{font-size:10px;color:#aaa;text-align:center;margin-bottom:14px}
+.socialg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.socialgi{border-radius:4px;overflow:hidden;aspect-ratio:1}
+.sg1{background:#2a1f0f}
+.sg2{background:#3a1a2a}
+.sg3{background:#1a1f2a}
+.sg4{background:#2a1a3a}
+
+/* FOOTER */
+.footer{background:#111;padding:22px 18px}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:16px;margin-bottom:16px}
+.flogo{font-weight:700;font-size:13px;color:#fff;margin-bottom:3px}
+.flogos{font-size:8px;color:#666;letter-spacing:.08em}
+.fh{font-size:9px;font-weight:700;color:#aaa;letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px}
+.fl{font-size:9px;color:#666;margin-bottom:4px;cursor:default}
+.fcopy{font-size:8px;color:#555;border-top:1px solid #222;padding-top:12px;display:flex;justify-content:space-between}
+.fsocial{display:flex;gap:8px}
+.fsi{width:16px;height:16px;background:#333;border-radius:2px}
+</style>
+
+<div class="tab-bar">
+  <button class="tb active" onclick="sw(0)">Playfair + Lato</button>
+  <button class="tb" onclick="sw(1)">Syne + Inter</button>
+  <button class="tb" onclick="sw(2)">Montserrat</button>
+</div>
+
+<script>
+const F = [
+  {hf:"'Playfair Display',serif", bf:"'Lato',sans-serif", hw:700, bw:400, lsp:"0.06em", navls:"0.08em", navfw:700, navfs:"13px"},
+  {hf:"'Syne',sans-serif", bf:"'Inter',sans-serif", hw:700, bw:300, lsp:"0.12em", navls:"0.12em", navfw:700, navfs:"12px"},
+  {hf:"'Montserrat',sans-serif", bf:"'Montserrat',sans-serif", hw:700, bw:300, lsp:"0.14em", navls:"0.14em", navfw:700, navfs:"11px"}
+];
+const NAMES = ["Playfair + Lato","Syne + Inter","Montserrat"];
+
+function page(f) {
+return `<div class="page" style="font-family:${f.bf}">
+<div class="tn">
+  <div class="hex"></div>
+  <div class="flogo" style="font-family:${f.hf};font-weight:${f.navfw};letter-spacing:${f.navls};font-size:${f.navfs};color:#fff">DISPLAY CASES</div>
+  <div class="sbar" style="font-family:${f.bf}">Search entire store here...</div>
+  <div class="nic"><div class="ni"></div><div class="ni2"></div></div>
+</div>
+<div class="sn">
+  <div class="snl" style="font-family:${f.bf};font-weight:500">Model Display Cases</div>
+  <div class="snl" style="font-family:${f.bf};font-weight:500">Sports Memorabilia Cases</div>
+  <div class="snl" style="font-family:${f.bf};font-weight:500">Risers / Display Stands</div>
+  <div class="snl" style="font-family:${f.bf};font-weight:500">Lego Display Cases</div>
+</div>
+<div class="bc" style="font-family:${f.bf}">Home / Model Display Cases / Small Acrylic Display Case With Base - Self Assembly</div>
+
+<div class="prod">
+  <div>
+    <div class="pimg"><div class="pimgi"></div></div>
+    <div class="pthumbs"><div class="pth"></div><div class="pth"></div></div>
+  </div>
+  <div>
+    <div class="ptitle" style="font-family:${f.hf};font-weight:${f.hw};font-size:17px">Small Acrylic Display Case With Base — Self Assembly</div>
+    <div class="pdesc" style="font-family:${f.bf};font-weight:${f.bw}">Premium rectangular acrylic display case with a sturdy base. Ideal for showcasing collectibles, models, and display items while protecting them from dust and damage.</div>
+    <div class="psku" style="font-family:${f.bf}">SKU: SMALLADC</div>
+    <div class="plabel" style="font-family:${f.bf}">Size of The Display Case *</div>
+    <div class="psel" style="font-family:${f.bf}">— Please Select —</div>
+    <div class="plabel" style="font-family:${f.bf}">Base Colour *</div>
+    <div class="psel" style="font-family:${f.bf}">— Please Select —</div>
+    <div class="pprice" style="font-family:${f.hf}">£0.00</div>
+    <div class="pcta" style="font-family:${f.bf};font-weight:700"><div class="cico"></div>Add to Cart</div>
+  </div>
+</div>
+
+<div class="specs">
+  <div class="stabs">
+    <div class="stab a" style="font-family:${f.bf}">Technical Specifications</div>
+    <div class="stab" style="font-family:${f.bf}">Dimensions</div>
+    <div class="stab" style="font-family:${f.bf}">SKU</div>
+    <div class="stab" style="font-family:${f.bf}">Weight</div>
+    <div class="stab" style="font-family:${f.bf}">Assembly</div>
+  </div>
+  <div class="sgrid">
+    <div class="sgi"><div class="sgiv" style="font-family:${f.hf}">3mm</div><div class="sgil" style="font-family:${f.bf}">Acrylic Thickness</div></div>
+    <div class="sgi"><div class="sgiv" style="font-family:${f.hf}">UV</div><div class="sgil" style="font-family:${f.bf}">Protection Grade</div></div>
+    <div class="sgi"><div class="sgiv" style="font-family:${f.hf}">Self</div><div class="sgil" style="font-family:${f.bf}">Assembly Type</div></div>
+    <div class="sgi"><div class="sgiv" style="font-family:${f.hf}">Black</div><div class="sgil" style="font-family:${f.bf}">Base Colour</div></div>
+  </div>
+</div>
+
+<div class="cont">
+  <div class="ch1" style="font-family:${f.hf};font-weight:${f.hw}">Small Acrylic Display Cases — Available in Multiple Sizes for Every Collection</div>
+  <div class="ch2" style="font-family:${f.hf};font-weight:${f.hw}">Crystal-clear protection for the things you love most</div>
+  <div class="cbody" style="font-family:${f.bf};font-weight:${f.bw}">Our small acrylic display cases are the perfect way to showcase and protect your most prized possessions. Whether you're storing action figures, trading cards, sports memorabilia, Funko Pops, jewellery, or miniatures, our clear display cases offer 360° visibility with durable, lightweight acrylic construction that won't yellow or crack over time. We stock them in a range of sizes to suit any collection.</div>
+  <div class="ch2" style="font-family:${f.hf};font-weight:${f.hw}">Why choose our acrylic display cases?</div>
+  <div class="cbody" style="font-family:${f.bf};font-weight:${f.bw}">Unlike glass, our premium clear acrylic cases are shatter-resistant, lightweight, and UV-resistant to keep your items safe from dust, moisture, and fading. Each case features a seamless, polished finish that puts the spotlight firmly on your collection — not the case itself. Ideal for home display, retail shelving, trade shows, or gift presentation.</div>
+  <div class="ch2" style="font-family:${f.hf};font-weight:${f.hw}">Multiple sizes — one collection, every possibility</div>
+  <div class="cbody" style="font-family:${f.bf};font-weight:${f.bw}">We stock small acrylic display cases in a wide range of sizes, so you never have to compromise. Choose from our selection to find a case that fits your item perfectly — or browse our custom sizing options if you need something truly bespoke. All sizes feature the same high-quality, optically clear acrylic with a removable lid or hinged opening.</div>
+  <div class="ch2" style="font-family:${f.hf};font-weight:${f.hw}">Perfect for any collectible or keepsake</div>
+  <div class="cbody" style="font-family:${f.bf};font-weight:${f.bw};margin-bottom:0">Our small clear display cases are trusted by collectors, retailers, and hobbyists to protect and present.</div>
+</div>
+
+<div class="exc">
+  <div class="exct" style="font-family:${f.hf};font-weight:${f.hw}">Designed for Display Excellence</div>
+  <div class="excs" style="font-family:${f.bf}">Engineered to showcase your most valuable items with museum-grade clarity and protection.</div>
+  <div class="excg">
+    <div class="exci">
+      <div class="excip excip1"><div><div class="excil" style="font-family:${f.hf}">Retail Display</div><div class="excis" style="font-family:${f.bf}">Premium presentation for high-value merchandise</div></div></div>
+    </div>
+    <div class="exci">
+      <div class="excip excip2"><div><div class="excil" style="font-family:${f.hf}">Home Collectible</div><div class="excis" style="font-family:${f.bf}">Protect and display treasured items with elegance</div></div></div>
+    </div>
+    <div class="exci">
+      <div class="excip excip3"><div><div class="excil" style="font-family:${f.hf}">Exhibition Display</div><div class="excis" style="font-family:${f.bf}">Museum quality presentation for artifacts</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="craft">
+  <div class="craftt" style="font-family:${f.hf};font-weight:${f.hw}">Precision Craftmanship</div>
+  <div class="crafts" style="font-family:${f.bf}">Every DisplayBox is CNC-cut, hand-finished, and inspected for clarity and strength. Our manufacturing process ensures optical perfection and structural integrity.</div>
+  <div class="craftg">
+    <div class="craftgi"><div class="crafticon"><div style="width:14px;height:14px;border:2px solid #7c3aed;border-radius:2px"></div></div><div class="craftil" style="font-family:${f.bf};font-weight:600">CNC Precision</div></div>
+    <div class="craftgi"><div class="crafticon"><div style="width:14px;height:14px;background:#7c3aed;border-radius:50%"></div></div><div class="craftil" style="font-family:${f.bf};font-weight:600">Hand Polished</div></div>
+    <div class="craftgi"><div class="crafticon"><div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #7c3aed"></div></div><div class="craftil" style="font-family:${f.bf};font-weight:600">Quality Tested</div></div>
+  </div>
+</div>
+
+<div class="yaml">
+  <div class="yamlt" style="font-family:${f.hf}">You May Also Like</div>
+  <div class="yamlg">
+    <div class="yamli">
+      <div class="yamliph"><div class="yamlipi"></div></div>
+      <div class="yamlib">
+        <div class="yamlitl" style="font-family:${f.bf};font-weight:600">Large Acrylic Display Case — Self Assembly</div>
+        <div class="stars">★★★★★</div>
+        <div class="yamlipx" style="font-family:${f.hf}">£121.00</div>
+        <button class="yamlibt" style="font-family:${f.bf}">Add to Cart</button>
+      </div>
+    </div>
+    <div class="yamli">
+      <div class="yamliph"><div class="yamlipi"></div></div>
+      <div class="yamlib">
+        <div class="yamlitl" style="font-family:${f.bf};font-weight:600">Medium Display Case — Self Assembly</div>
+        <div class="stars">★★★★★</div>
+        <div class="yamlipx" style="font-family:${f.hf}">£1,243.00</div>
+        <button class="yamlibt" style="font-family:${f.bf}">Add to Cart</button>
+      </div>
+    </div>
+    <div class="yamli">
+      <div class="yamliph"><div class="yamlipi"></div></div>
+      <div class="yamlib">
+        <div class="yamlitl" style="font-family:${f.bf};font-weight:600">Tall Display Case</div>
+        <div class="stars">★★★★★</div>
+        <div class="yamlipx" style="font-family:${f.hf}">£0.01</div>
+        <button class="yamlibt" style="font-family:${f.bf}">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="custom">
+  <div class="customt" style="font-family:${f.hf};font-weight:${f.hw}">Need a Different Size or Custom Requirement?</div>
+  <div class="customs" style="font-family:${f.bf}">Our team specialises in custom display solutions tailored to your exact specifications.</div>
+  <div class="custombtn" style="font-family:${f.bf}">Contact Our Team</div>
+</div>
+
+<div class="social">
+  <div class="socialt" style="font-family:${f.hf};font-weight:${f.hw}">DisplayBoxes In Action</div>
+  <div class="socials" style="font-family:${f.bf}">#DisplayBoxesInAction</div>
+  <div class="socialg">
+    <div class="socialgi sg1"></div>
+    <div class="socialgi sg2"></div>
+    <div class="socialgi sg3"></div>
+    <div class="socialgi sg4"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="fgrid">
+    <div>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><div class="hex"></div><div class="flogo" style="font-family:${f.hf}">DISPLAY CASES</div></div>
+      <div class="flogos" style="font-family:${f.bf}">Display. Redefined.</div>
+    </div>
+    <div>
+      <div class="fh" style="font-family:${f.bf}">Quick Links</div>
+      ${["Home","Products","Box Types","Custom Orders","About Us","Assembly Instructions"].map(l=>`<div class="fl" style="font-family:${f.bf}">${l}</div>`).join("")}
+    </div>
+    <div>
+      <div class="fh" style="font-family:${f.bf}">Support</div>
+      ${["Contact","Shipping Info","Returns","Care Guide","FAQs","Terms and Conditions"].map(l=>`<div class="fl" style="font-family:${f.bf}">${l}</div>`).join("")}
+    </div>
+    <div>
+      <div class="fh" style="font-family:${f.bf}">Contact Info</div>
+      <div class="fl" style="font-family:${f.bf};color:#888">123 Design Quarter, London, UK</div>
+      <div class="fl" style="font-family:${f.bf};color:#888;margin-top:4px">+44 20 1234 5678</div>
+      <div class="fl" style="font-family:${f.bf};color:#00c8a0;margin-top:4px">sales@displayboxes.co.uk</div>
+    </div>
+  </div>
+  <div class="fcopy"><span style="font-family:${f.bf}">© DisplayBoxes 2025</span><div class="fsocial"><div class="fsi"></div><div class="fsi"></div><div class="fsi"></div></div></div>
+</div>
+</div>`;
+}
+
+const wrap = document.createElement('div');
+wrap.id = 'pages';
+F.forEach((f,i) => {
+  wrap.innerHTML += page(f);
+});
+document.body.appendChild(wrap);
+
+document.querySelectorAll('.page')[0].classList.add('show');
+
+function sw(i) {
+  document.querySelectorAll('.page').forEach((p,j) => p.classList.toggle('show', j===i));
+  document.querySelectorAll('.tb').forEach((b,j) => b.classList.toggle('active', j===i));
+}
+
+document.querySelector('.tab-bar').addEventListener('click', e => {
+  if(e.target.classList.contains('tb')) {
+    const idx = [...document.querySelectorAll('.tb')].indexOf(e.target);
+    sw(idx);
+  }
+});
+</script>
